@@ -14,7 +14,9 @@ public enum CapitoleExceptionCode implements IEnumResource {
 
    GENERIC_ERROR(HttpStatus.PRECONDITION_FAILED),
    PARAM_FORMAT_NOT_VALID(HttpStatus.PRECONDITION_FAILED),
-   PARAM_TYPE_NOT_VALID(HttpStatus.PRECONDITION_FAILED);
+   PARAM_TYPE_NOT_VALID(HttpStatus.PRECONDITION_FAILED),
+   UNKNOWN_PRODUCT(HttpStatus.PRECONDITION_FAILED),
+   PRODUCT_ALREADY_EXISTS_WITH_SAME_CODE(HttpStatus.PRECONDITION_FAILED);
 
    private static final String PROPERTIES_NAME = "com/capitole/exceptions/exception";
 
