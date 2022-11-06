@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.apache.logging.log4j.Level.WARN;
 import static org.apache.logging.log4j.message.ParameterizedMessage.format;
 
 import org.apache.logging.log4j.Logger;
@@ -41,15 +40,11 @@ public interface IEnumResource {
 
    default String getLocaleMessageImpl(Locale locale, Object... params) {
       String resourceKeyName = getResourceKey();
-      try {
-         String resourceBundleName = isEmpty(getPropertiesName()) ? DEFAULT_RESOURCE : getPropertiesName();
-         ResourceBundle rs = getBundle(resourceBundleName, locale, getNoFallbackControl(FORMAT_PROPERTIES));
-         if (nonNull(((PropertyResourceBundle) rs).handleGetObject(resourceKeyName))) {
-            String message = rs.getString(resourceKeyName);
-            return isNotEmpty(params) ? format(message, params) : message;
-         }
-      } catch (Exception ex) {
-         getLog().log(WARN, "Exception loading message for locale: {}", locale.toString());
+      String resourceBundleName = isEmpty(getPropertiesName()) ? DEFAULT_RESOURCE : getPropertiesName();
+      ResourceBundle rs = getBundle(resourceBundleName, locale, getNoFallbackControl(FORMAT_PROPERTIES));
+      if (nonNull(((PropertyResourceBundle) rs).handleGetObject(resourceKeyName))) {
+         String message = rs.getString(resourceKeyName);
+         return isNotEmpty(params) ? format(message, params) : message;
       }
       return resourceKeyName + "_NOT_FOUND";
    }

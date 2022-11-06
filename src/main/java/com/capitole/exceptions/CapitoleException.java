@@ -14,12 +14,6 @@ public class CapitoleException extends Exception {
       this.messageParams = messageParams;
    }
 
-   public CapitoleException(Exception cause, CapitoleExceptionCode exceptionCode, Object... messageParams) {
-      super(cause);
-      this.exceptionCode = exceptionCode;
-      this.messageParams = messageParams;
-   }
-
    @Override
    public String getMessage() {
       return this.exceptionCode.getLocaleMessage(messageParams);
