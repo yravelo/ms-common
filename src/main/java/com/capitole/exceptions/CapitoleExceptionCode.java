@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 public enum CapitoleExceptionCode implements IEnumResource {
 
    GENERIC_ERROR(HttpStatus.PRECONDITION_FAILED),
+   ACCESS_DENIED(HttpStatus.FORBIDDEN, Level.WARN),
    PARAM_FORMAT_NOT_VALID(HttpStatus.PRECONDITION_FAILED),
    PARAM_TYPE_NOT_VALID(HttpStatus.PRECONDITION_FAILED),
    UNKNOWN_PRODUCT(HttpStatus.PRECONDITION_FAILED),
